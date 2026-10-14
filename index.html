@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cafetería Alicia | Cafetería y pastelería en Padul, Granada</title>
+<meta name="description" content="Cafetería y pastelería Alicia en Padul, Granada. Café, desayunos, pasteles, bollería y tartas por encargo. Consulta nuestra carta y precios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --granada: #8E1B3F;
+    --granada-oscuro: #5E1029;
+    --pistacho: #B5C98A;
+    --azucar: #FFF6F4;
+    --rosa: #EBC9CB;
+    --cacao: #3A2125;
+    --serif: "Young Serif", Georgia, "Times New Roman", serif;
+    --sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--cacao);
+    background: var(--azucar);
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--pistacho); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- Portada ---------- */
+  .portada {
+    background: var(--granada);
+    color: var(--azucar);
+    padding: clamp(2.5rem, 7vw, 5rem) 1.25rem clamp(3rem, 8vw, 5.5rem);
+  }
+  .portada-int {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) { .portada-int { grid-template-columns: 1.15fr 0.85fr; } }
+  .portada p.lugar { margin: 0 0 0.75rem; color: var(--pistacho); font-weight: 600; }
+  .portada h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(3.5rem, 12vw, 7.5rem);
+    line-height: 0.95;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .portada .lema { font-size: 1.25rem; max-width: 30ch; margin: 0 0 2rem; }
+  .botones { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .boton {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--pistacho);
+  }
+  .boton.principal { background: var(--pistacho); color: var(--granada-oscuro); }
+  .boton.secundario { color: var(--azucar); }
+  .boton:hover { background: var(--azucar); border-color: var(--azucar); color: var(--granada-oscuro); }
+  .granada-dibujo { width: min(100%, 380px); justify-self: center; }
+  .granada-dibujo svg { display: block; width: 100%; height: auto; }
+
+  /* ---------- Navegación de la carta ---------- */
+  .indice {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--azucar);
+    border-bottom: 1px solid var(--rosa);
+  }
+  .indice ul {
+    list-style: none; margin: 0 auto; padding: 0.75rem 1.25rem;
+    max-width: 1080px;
+    display: flex; gap: 0.5rem; overflow-x: auto;
+  }
+  .indice a {
+    display: block; white-space: nowrap;
+    padding: 0.4rem 1rem; border-radius: 999px;
+    background: #fff; border: 1px solid var(--rosa);
+    text-decoration: none; font-weight: 500; font-size: 0.97rem;
+  }
+  .indice a:hover { background: var(--granada); border-color: var(--granada); color: var(--azucar); }
+
+  /* ---------- Carta ---------- */
+  main { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem 1rem; }
+  .categoria { margin-bottom: 3.5rem; }
+  .categoria h2 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    color: var(--granada);
+    margin: 0 0 0.25rem; line-height: 1.1;
+  }
+  .categoria .nota { margin: 0 0 1.25rem; color: #6d4b50; }
+  .productos { list-style: none; margin: 0; padding: 0; }
+  .producto { padding: 0.7rem 0; border-bottom: 1px solid var(--rosa); }
+  .fila { display: flex; align-items: baseline; gap: 0.6rem; }
+  .nombre { font-weight: 600; }
+  .puntos { flex: 1; border-bottom: 2px dotted var(--rosa); transform: translateY(-4px); min-width: 1rem; }
+  .precio { font-weight: 600; color: var(--granada); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .desc { margin: 0.1rem 0 0; font-size: 0.95rem; color: #6d4b50; max-width: 60ch; }
+  .aviso {
+    background: #fff; border: 1px solid var(--rosa); border-radius: 12px;
+    padding: 1rem 1.25rem; font-size: 0.95rem; margin-bottom: 3rem;
+  }
+
+  /* ---------- Visítanos ---------- */
+  .visita { background: var(--granada-oscuro); color: var(--azucar); padding: 3.5rem 1.25rem; }
+  .visita-int { max-width: 1080px; margin: 0 auto; display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .visita-int { grid-template-columns: 1fr 1fr; } }
+  .visita h2 { font-family: var(--serif); font-weight: 400; font-size: 2rem; margin: 0 0 1rem; }
+  .visita h3 { font-size: 1.05rem; margin: 0 0 0.35rem; color: var(--pistacho); }
+  .visita p { margin: 0 0 1.25rem; }
+  .horario { border-collapse: collapse; width: 100%; max-width: 360px; }
+  .horario td { padding: 0.35rem 0; border-bottom: 1px solid rgba(255,246,244,0.2); }
+  .horario td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .visita a { text-decoration-color: var(--pistacho); text-underline-offset: 3px; }
+
+  footer { background: var(--granada-oscuro); color: rgba(255,246,244,0.75); text-align: center; padding: 1.25rem; font-size: 0.9rem; border-top: 1px solid rgba(255,246,244,0.15); }
+</style>
+</head>
+<body>
+
+<header class="portada">
+  <div class="portada-int">
+    <div>
+      <p class="lugar">Padul, Granada</p>
+      <h1>Cafetería Alicia</h1>
+      <p class="lema">Café recién hecho por la mañana, pasteles y tartas caseras para el resto del día.</p>
+      <div class="botones">
+        <a class="boton principal" href="#carta">Ver la carta</a>
+        <a class="boton secundario" href="#visitanos">Cómo llegar</a>
+      </div>
+    </div>
+    <div class="granada-dibujo" aria-hidden="true">
+      <svg id="granada" viewBox="0 0 400 400"></svg>
+    </div>
+  </div>
+</header>
+
+<nav class="indice" aria-label="Categorías de la carta">
+  <ul id="indice"></ul>
+</nav>
+
+<main id="carta">
+  <div class="aviso">
+    Si tienes alguna alergia o intolerancia, avísanos antes de pedir y te decimos qué lleva cada producto.
+  </div>
+  <div id="categorias"></div>
+</main>
+
+<section class="visita" id="visitanos">
+  <div class="visita-int">
+    <div>
+      <h2>Visítanos</h2>
+      <h3>Dirección</h3>
+      <p id="direccion"></p>
+      <h3>Teléfono</h3>
+      <p id="telefono"></p>
+      <h3>Pedidos de tartas</h3>
+      <p>Encarga tu tarta con 48 horas de antelación, por teléfono o en el local.</p>
+    </div>
+    <div>
+      <h3>Horario</h3>
+      <table class="horario" id="horario"></table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span id="anio"></span> Cafetería Alicia · Padul, Granada
+</footer>
+
+<script>
+/* =========================================================
+   EDITA AQUÍ TUS DATOS
+   Todo lo que ves en la página sale de estas listas.
+   Cambia textos y precios (usa punto para los decimales: 1.50)
+   ========================================================= */
+
+const NEGOCIO = {
+  direccion: "Calle (escribe aquí tu calle y número), Padul, Granada",
+  telefono: "000 000 000",
+  horario: [
+    ["Lunes a viernes", "07:30 - 20:00"],
+    ["Sábado", "08:00 - 21:00"],
+    ["Domingo", "08:00 - 15:00"]
+  ]
+};
+
+/* Cada producto: n = nombre, d = descripción (opcional), p = precio en euros, desde = true si es "desde" */
+const CARTA = [
+  {
+    id: "cafes",
+    titulo: "Cafés y bebidas",
+    nota: "",
+    productos: [
+      { n: "Café solo", p: 1.30 },
+      { n: "Cortado", p: 1.40 },
+      { n: "Café con leche", p: 1.50 },
+      { n: "Capuchino", p: 2.00 },
+      { n: "Café bombón", p: 1.80 },
+      { n: "Carajillo", p: 2.20 },
+      { n: "Infusión", d: "Té, poleo, manzanilla o tila", p: 1.50 },
+      { n: "Chocolate caliente", p: 2.20 },
+      { n: "Zumo de naranja natural", p: 2.50 },
+      { n: "Batido", d: "Chocolate, fresa o vainilla", p: 2.50 },
+      { n: "Refrescos", p: 2.00 },
+      { n: "Agua", p: 1.20 },
+      { n: "Caña de cerveza", p: 1.80 }
+    ]
+  },
+  {
+    id: "desayunos",
+    titulo: "Desayunos y meriendas",
+    nota: "Tostadas y molletes hechos al momento.",
+    productos: [
+      { n: "Tostada con aceite y tomate", p: 1.80 },
+      { n: "Tostada con jamón serrano", p: 2.80 },
+      { n: "Mollete con aceite", p: 1.50 },
+      { n: "Pitufo", d: "Jamón y queso, o tortilla", p: 2.50 },
+      { n: "Churros", d: "Ración con chocolate", p: 3.00 },
+      { n: "Desayuno completo", d: "Café, zumo de naranja y tostada", p: 3.50 }
+    ]
+  },
+  {
+    id: "pasteles",
+    titulo: "Pasteles",
+    nota: "Hechos en nuestro obrador. Se venden por unidades o por porciones.",
+    productos: [
+      { n: "Pionono de Santa Fe", d: "Bizcocho almibarado con crema tostada", p: 2.00 },
+      { n: "Milhojas de crema", p: 2.50 },
+      { n: "Eclair de chocolate", p: 2.20 },
+      { n: "Palmera de chocolate", p: 1.80 },
+      { n: "Tocino de cielo", p: 2.20 },
+      { n: "Brazo de gitano", d: "Porción", p: 2.50 },
+      { n: "Tarta de queso", d: "Porción", p: 3.50 },
+      { n: "Tarta de tres chocolates", d: "Porción", p: 3.80 },
+      { n: "Tarta de nata y fresas", d: "Porción", p: 3.50 }
+    ]
+  },
+  {
+    id: "boleria",
+    titulo: "Bollería",
+    nota: "",
+    productos: [
+      { n: "Croissant", p: 1.50 },
+      { n: "Napolitana de chocolate", p: 1.70 },
+      { n: "Donut", p: 1.40 },
+      { n: "Magdalena", p: 1.00 },
+      { n: "Roscos de vino", d: "Bolsa de 6 unidades", p: 3.00 },
+      { n: "Pestiños", d: "Bolsa de 6 unidades", p: 3.50 }
+    ]
+  },
+  {
+    id: "tartas",
+    titulo: "Tartas enteras por encargo",
+    nota: "Encárgalas con 48 horas de antelación.",
+    productos: [
+      { n: "Tarta de queso", d: "8 raciones", p: 24.00 },
+      { n: "Tarta de tres chocolates", d: "8 raciones", p: 28.00 },
+      { n: "Tarta de nata y fresas", d: "8 raciones", p: 26.00 },
+      { n: "Tarta de cumpleaños personalizada", d: "Cuéntanos el diseño y el sabor", p: 30.00, desde: true }
+    ]
+  }
+];
+
+/* =========================================================
+   A partir de aquí no hace falta tocar nada
+   ========================================================= */
+
+function precio(p, desde) {
+  const t = p.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  return desde ? "desde " + t : t;
+}
+
+function crear(tag, clase, texto) {
+  const e = document.createElement(tag);
+  if (clase) e.className = clase;
+  if (texto !== undefined) e.textContent = texto;
+  return e;
+}
+
+const indice = document.getElementById("indice");
+const cont = document.getElementById("categorias");
+
+CARTA.forEach(cat => {
+  const li = crear("li");
+  const a = crear("a", "", cat.titulo);
+  a.href = "#" + cat.id;
+  li.appendChild(a);
+  indice.appendChild(li);
+
+  const sec = crear("section", "categoria");
+  sec.id = cat.id;
+  sec.appendChild(crear("h2", "", cat.titulo));
+  if (cat.nota) sec.appendChild(crear("p", "nota", cat.nota));
+
+  const ul = crear("ul", "productos");
+  cat.productos.forEach(pr => {
+    const li = crear("li", "producto");
+    const fila = crear("div", "fila");
+    fila.appendChild(crear("span", "nombre", pr.n));
+    fila.appendChild(crear("span", "puntos"));
+    fila.appendChild(crear("span", "precio", precio(pr.p, pr.desde)));
+    li.appendChild(fila);
+    if (pr.d) li.appendChild(crear("p", "desc", pr.d));
+    ul.appendChild(li);
+  });
+  sec.appendChild(ul);
+  cont.appendChild(sec);
+});
+
+document.getElementById("direccion").textContent = NEGOCIO.direccion;
+
+const tel = document.getElementById("telefono");
+const enlace = crear("a", "", NEGOCIO.telefono);
+enlace.href = "tel:" + NEGOCIO.telefono.replace(/\s+/g, "");
+tel.appendChild(enlace);
+
+const tabla = document.getElementById("horario");
+NEGOCIO.horario.forEach(([dia, horas]) => {
+  const tr = crear("tr");
+  tr.appendChild(crear("td", "", dia));
+  tr.appendChild(crear("td", "", horas));
+  tabla.appendChild(tr);
+});
+
+document.getElementById("anio").textContent = "© " + new Date().getFullYear();
+
+/* Granada abierta: círculos de pepitas en anillos */
+(function () {
+  const svg = document.getElementById("granada");
+  const NS = "http://www.w3.org/2000/svg";
+  const add = (tag, attrs) => {
+    const e = document.createElementNS(NS, tag);
+    Object.keys(attrs).forEach(k => e.setAttribute(k, attrs[k]));
+    svg.appendChild(e);
+  };
+  add("circle", { cx: 200, cy: 200, r: 185, fill: "#5E1029" });
+  add("circle", { cx: 200, cy: 200, r: 168, fill: "#FFF6F4" });
+  const anillos = [[0, 1], [38, 6], [78, 12], [118, 18], [150, 22]];
+  anillos.forEach(([radio, n], i) => {
+    for (let k = 0; k < n; k++) {
+      const ang = (k / n) * Math.PI * 2 + i * 0.4;
+      const x = 200 + Math.cos(ang) * radio;
+      const y = 200 + Math.sin(ang) * radio;
+      add("circle", { cx: x.toFixed(1), cy: y.toFixed(1), r: i === 0 ? 20 : 17 - i * 1.2, fill: i % 2 ? "#C2294F" : "#8E1B3F" });
+    }
+  });
+  add("path", { d: "M170 18 Q200 -4 230 18 L222 42 Q200 30 178 42 Z", fill: "#B5C98A" });
+})();
+</script>
+</body>
+</html>
